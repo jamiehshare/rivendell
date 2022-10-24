@@ -12,7 +12,7 @@ RoxygenNote: 7.2.1
 Imports: 
     dplyr,
     janitor,
-    magrittr,
     readr,
     rlang,
+    stringr,
     tidyr
