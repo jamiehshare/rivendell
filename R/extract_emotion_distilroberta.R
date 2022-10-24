@@ -3,10 +3,13 @@
 #' @param df The dataframe output from the python emotion script
 #'
 #' @return A dataframe
+#' @importFrom dplyr mutate
+#' @importFrom dplyr case_when
+#' @importFrom dplyr select
+#' @importFrom dplyr %>%
 #' @export
 #'
-#' @examples
-#' extract_emotion_distilroberta(twitter_sent_2)
+
 extract_emotion_distilroberta <- function(df) {
 
   extract_emotion <- function(df, emotion, column_a, column_b, column_c, column_d, column_e, column_f, column_g) {

@@ -1,3 +1,15 @@
+#' Wrangle distilbert output into a nice format
+#'
+#' @param df The dataframe output from the python emotion script
+#'
+#' @return A dataframe
+#' @importFrom dplyr mutate
+#' @importFrom dplyr case_when
+#' @importFrom dplyr select
+#' @importFrom dplyr %>%
+#' @export
+#'
+
 extract_emotion_distilbert <- function(df) {
 
   extract_emotion <- function(df, emotion, column_a, column_b, column_c, column_d, column_e, column_f) {
@@ -25,6 +37,6 @@ extract_emotion_distilbert <- function(df) {
                     column_e = e, column_f = f) %>%
     extract_emotion(emotion = "surprise", column_a = a, column_b = b, column_c = c, column_d = d,
                     column_e = e, column_f = f) %>%
-    select(anger, fear, joy, love, sadness, surprise)
+    dplyr::select(anger, fear, joy, love, sadness, surprise)
 
 }

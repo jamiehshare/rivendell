@@ -15,6 +15,3 @@ A dataframe
 \description{
 Wrangle distilroberta output into a nice format
 }
-\examples{
-extract_emotion_distilroberta(twitter_sent_2)
-}
