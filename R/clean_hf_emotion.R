@@ -11,7 +11,7 @@
 #' @export
 #'
 
-extract_emotion_distilbert <- function(df) {
+clean_hf_emotion <- function(df) {
 
   df %>%
     janitor::clean_names() %>%

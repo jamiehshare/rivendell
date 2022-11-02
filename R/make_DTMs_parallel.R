@@ -1,3 +1,14 @@
+#' Make Document Term Matrix using parallel processing
+#'
+#' @param df The og dataframe
+#' @param text_var Column representing text variable
+#' @param min_freq Minimum frequency
+#' @param hashtags Keep hashtags?
+#' @param mentions Keep mentions?
+#'
+#' @return A list
+#' @export
+#'
 make_DTMs_parallel <- function(df,
                                text_var,
                                min_freq = 10,
