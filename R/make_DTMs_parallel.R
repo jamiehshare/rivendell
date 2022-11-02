@@ -47,8 +47,8 @@ make_DTMs_parallel <- function(df,
     stopwords <- SegmentR::stopwords
 
     term_counts <- data %>%
-      group_split(cuts) %>%
-      future_map_dfr(~ .x %>%
+      dplyr::group_split(cuts) %>%
+      furrr::future_map_dfr(~ .x %>%
                        # Split posts into individual words
                        tidytext::unnest_tokens(input = message,
                                                output = word,
