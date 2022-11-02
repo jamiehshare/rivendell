@@ -15,9 +15,9 @@ make_DTMs_parallel <- function(df,
                                hashtags = FALSE,
                                mentions = FALSE) {
 
-  require("SegmentR")
+  requireNamespace("SegmentR")
 
-  future::plan(multisession(workers = availableCores() -1))
+  future::plan(future::multisession(workers = availableCores() -1))
 
 
   # Clean the text - this part was edited by Jack to avoid mismatching document IDs (Mar 28th 2022)
