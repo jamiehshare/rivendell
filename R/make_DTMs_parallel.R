@@ -4,6 +4,8 @@ make_DTMs_parallel <- function(df,
                                hashtags = FALSE,
                                mentions = FALSE) {
 
+  requires("SegmentR")
+
   future::plan(multisession(workers = availableCores() -1))
 
 

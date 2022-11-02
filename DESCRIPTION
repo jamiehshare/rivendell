@@ -16,7 +16,6 @@ Imports:
     purrr,
     readr,
     rlang,
-    SegmentR,
     stringr,
     tibble,
     tidyr,
