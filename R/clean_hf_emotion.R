@@ -14,7 +14,7 @@
 clean_hf_emotion <- function(df) {
 
   df %>%
-    janitor::clean_names2() %>%
+    janitor::clean_names() %>%
     dplyr::mutate(document = dplyr::row_number()) %>%
     tidyr::pivot_longer(cols = -.data$document) %>%
     dplyr::filter(!is.na(.data$value)) %>%
