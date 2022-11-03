@@ -21,13 +21,13 @@ coh <- explore_tbl_df %>%
               median = stats::median(coherence))
 
 coh %>%
-    ggplot2::ggplot(aes(x = k)) +
-    ggplot2::geom_point(aes(y = mean, colour = "mean"),
+    ggplot2::ggplot(ggplot2::aes(x = k)) +
+    ggplot2::geom_point(ggplot2::aes(y = mean, colour = "mean"),
                size = 2) +
-    ggplot2::geom_point(aes(y = median, colour = "median"),
+    ggplot2::geom_point(ggplot2::aes(y = median, colour = "median"),
                size = 2) +
-    ggplot2::geom_line(aes(y = mean, colour = "mean")) +
-    ggplot2::geom_line(aes(y = median, colour
+    ggplot2::geom_line(ggplot2::aes(y = mean, colour = "mean")) +
+    ggplot2::geom_line(ggplot2::aes(y = median, colour
                   = "median")) +
     ggplot2::scale_x_continuous(breaks = seq(min(coh$k), max(coh$k), 1)) +
     ggplot2::scale_colour_viridis_d(breaks = c("mean", "median")) +
