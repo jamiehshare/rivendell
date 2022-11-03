@@ -2,6 +2,7 @@
 
 export(clean_hf_emotion)
 export(make_DTMs_parallel)
+export(plot_coherence)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,case_when)
 importFrom(dplyr,mutate)
