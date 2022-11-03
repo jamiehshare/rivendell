@@ -13,12 +13,12 @@ coh <- explore_tbl_df %>%
     dplyr::pull(coherence) %>%
     data.table::rbindlist(idcol = T) %>%
     dplyr::group_by(.id) %>%
-    dplyr::mutate(k = n()) %>%
+    dplyr::mutate(k = dplyr::n()) %>%
     dplyr::ungroup() %>%
     dplyr::group_by(k) %>%
     dplyr::summarise(mean = mean(coherence),
-              sd = sd(coherence),
-              median = median(coherence))
+              sd = stats::sd(coherence),
+              median = stats::median(coherence))
 
 coh %>%
     ggplot2::ggplot(aes(x = k)) +

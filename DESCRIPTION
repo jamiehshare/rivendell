@@ -19,6 +19,7 @@ Imports:
     purrr,
     readr,
     rlang,
+    stats,
     stringr,
     tibble,
     tidyr,
