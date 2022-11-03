@@ -316,7 +316,7 @@ explore_LDAs_JH <- function(ldas,
       dplyr::inner_join(., orig_data, by = c("document" = "message_id")) %>%
       ParseR::count_ngram(., text_var = message, top_n = top_n)
 
-    bigram_list[[i]] <- rivndell::jh_viz_ngram(topic_counts$viz) +
+    bigram_list[[i]] <- rivendell::jh_viz_ngram(topic_counts$viz) +
       ggplot2::labs(caption = paste0("Topic ", i))
   }
 
