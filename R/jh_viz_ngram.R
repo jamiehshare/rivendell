@@ -68,8 +68,6 @@ jh_viz_ngram <-function(tbl_graph, emphasis = TRUE) {
                                           breaks = edge_breaks,
                                           range = c(0.5, 1),
                                           labels = scales::comma) +
-      ggplot2::guides(scale_edge_color = ggplot2::guide_legend(order = 0),
-                      color  = ggplot2::guide_legend(order = 1)) +
       ggplot2::theme_void() +
       ggplot2::theme(legend.position = "right",
                      title = ggplot2::element_text(size = 12),
