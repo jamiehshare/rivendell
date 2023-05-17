@@ -38,9 +38,10 @@ pp_products <- function(df, text_var){
 pp_brands <- function(df, text_var){
 
   brands <- rivendell::brand_entity
-  brands <- paste0(brands, collapse = "|")
+  strings <- brands$pattern
+  strings <- paste0(strings, collapse = "|")
   replacement <- "brand"
 
   df %>%
-    dplyr::mutate({{text_var}} := stringr::str_replace_all(tolower( {{text_var}} ), brands, replacement))
+    dplyr::mutate({{text_var}} := stringr::str_replace_all(tolower( {{text_var}} ), strings, replacement))
 }
