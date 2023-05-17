@@ -26,3 +26,6 @@ Imports:
     tibble,
     tidyr,
     tidytext
+LazyData: true
+Depends: 
+    R (>= 2.10)
