@@ -26,7 +26,7 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
                   end_index = parse_number(end_index)) %>%
     dplyr::mutate(entity_score = round(as.numeric(entity_score), 3),
                   start_index = start_index + 1,
-                  end_index = end_index + 1,
+                  end_index = end_index ,
                   document = document + 1) %>%
     dplyr::select(-name)
 
@@ -39,11 +39,12 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
   # Apply the function to replace words in the 'text' column
   result_df <- input_df %>%
     dplyr::left_join(ner_clean, by = "document") %>%
-    dplyr::filter(entity_type %in% c("MISC", "ORG", NA)) %>%
+    dplyr::filter(entity_type %in% c("MISC", "ORG", NA),
+                  entity_score > 0.9) %>%
     dplyr::group_by(document) %>%
     dplyr::mutate(replacement_text = dplyr::case_when(!is.na(entity_type) ~
                                                      stringi::stri_sub_replace_all({{text_var}}, start_index, end_index, replacement = paste(mask_term, "")),
-                                     TRUE ~ text
+                                     TRUE ~ {{text_var}}
     )) %>%
     dplyr::distinct(document, .keep_all = T) %>%
     ungroup()
@@ -81,13 +82,14 @@ ner_brand_product <- function(ner_df, input_df, text_var) {
                   end_index = parse_number(end_index)) %>%
     dplyr::mutate(entity_score = round(as.numeric(entity_score), 3),
                   start_index = start_index + 1,
-                  end_index = end_index + 1,
+                  end_index = end_index,
                   document = document + 1) %>%
     dplyr::select(-name)
 
   result <- df %>%
     dplyr::left_join(ner_clean, by = "document") %>%
-    dplyr::filter(entity_type %in% c("MISC", "ORG")) %>%
+    dplyr::filter(entity_type %in% c("MISC", "ORG"),
+                  entity_score > 0.9) %>%
     dplyr::group_by(document) %>%
     dplyr::mutate(replacement = dplyr::case_when(stringr::str_detect(entity_type, "ORG") ~ "brand",
                                    T ~ "product")) %>%
@@ -105,7 +107,7 @@ ner_brand_product <- function(ner_df, input_df, text_var) {
     dplyr::full_join(df, by = c("document", "text")) %>%
     dplyr::arrange(document) %>%
     dplyr::rowwise() %>%
-    dplyr::mutate(replacement_text = dplyr::case_when(!is.null(entity_type) ~ stringi::stri_sub_replace_all(text, from = unlist(start_index), to = unlist(end_index), replacement = paste(replacement, "")),
+    dplyr::mutate(replacement_text = dplyr::case_when(!is.null(entity_type) ~ stringi::stri_sub_replace_all({{text_var}}, from = unlist(start_index), to = unlist(end_index), replacement = paste(replacement, "")),
                                         TRUE ~ {{text_var}})) %>%
     tidyr::unnest(cols = c(entity_type, entity_score, entity, start_index, end_index),
            keep_empty = T) %>%
