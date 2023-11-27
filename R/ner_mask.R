@@ -41,7 +41,7 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
     return(replacements)
   }
 
-  df1000 <- df1000 %>%
+  result_df <- input_df %>%
     select({{text_var}}) %>%
     mutate(document = row_number())
   # Apply the function to replace words in the 'text' column
