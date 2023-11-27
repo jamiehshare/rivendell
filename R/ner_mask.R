@@ -43,7 +43,7 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
                   entity_score > 0.9) %>%
     dplyr::group_by(document) %>%
     dplyr::mutate(replacement_text = dplyr::case_when(!is.na(entity_type) ~
-                                                     stringi::stri_sub_replace_all({{text_var}}, start_index, end_index, replacement = paste(mask_term, "")),
+                                                     stringi::stri_sub_replace_all({{text_var}}, start_index, end_index, replacement = mask_term),
                                      TRUE ~ {{text_var}}
     )) %>%
     dplyr::distinct(document, .keep_all = T) %>%
