@@ -4,10 +4,9 @@
 #' @param input_df The dataframe that contains the social post with a document id number
 #' @param text_var The column containing the text variable
 #'
-#' @return
+#' @return A dataframe
 #' @export
 #'
-#' @examples
 ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
 
   ner_clean <- ner_df %>%
@@ -60,10 +59,9 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
 #' @param input_df The dataframe that contains the social post with a document id number
 #' @param text_var The column containing the text variable
 #'
-#' @return
+#' @return A dataframe
 #' @export
 #'
-#' @examples
 ner_brand_product <- function(ner_df, input_df, text_var) {
 
   ner_clean <- ner_df %>%

@@ -6,8 +6,6 @@
 #' @return Data Frame or Tibble object with text variable edited inline
 #' @export
 #'
-#' @examples
-#'
 pp_products <- function(df, text_var){
 
   entities <- LimpiaR::entities
@@ -32,8 +30,6 @@ pp_products <- function(df, text_var){
 #'
 #' @return Data Frame or Tibble object with text variable edited inline
 #' @export
-#'
-#' @examples
 #'
 pp_brands <- function(df, text_var){
 
