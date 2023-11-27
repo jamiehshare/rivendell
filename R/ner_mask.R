@@ -41,8 +41,13 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
     return(replacements)
   }
 
+  df1000 <- df1000 %>%
+    select({{text_var}}) %>%
+    mutate(document = row_number())
   # Apply the function to replace words in the 'text' column
   result_df <- input_df %>%
+    select(message_ner) %>%
+    mutate(document = row_number()) %>%
     dplyr::left_join(ner_clean, by = "document") %>%
     dplyr::group_by(document) %>%
     dplyr::mutate(replacement_text = dplyr::case_when(!is.na(entity_type) ~
@@ -95,6 +100,8 @@ ner_brand_product <- function(ner_df, input_df, text_var) {
                   entity_score > 0.8)
 
   result <- input_df %>%
+    select({{text_var}}) %>%
+    mutate(document = row_number()) %>%
     rename(text = {{text_var}}) %>%
     dplyr::left_join(ner_clean, by = "document") %>%
     dplyr::group_by(document) %>%
