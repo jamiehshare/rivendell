@@ -114,7 +114,7 @@ ner_brand_product <- function(ner_df, input_df, text_var) {
     dplyr::full_join(input_df, by = c("document")) %>%
     dplyr::arrange(document) %>%
     dplyr::rowwise() %>%
-    dplyr::mutate(replacement_text = dplyr::case_when(!is.null(entity_type) ~ stringi::stri_sub_replace_all(text, from = unlist(start_index), to = unlist(end_index), replacement = paste(replacement, "")),
+    dplyr::mutate(replacement_text = dplyr::case_when(!is.null(entity_type) ~ stringi::stri_sub_replace_all(text, from = unlist(start_index), to = unlist(end_index), replacement = replacement),
                                                       TRUE ~ text)) %>%
     tidyr::unnest(cols = c(entity_type, entity_score, entity, start_index, end_index),
                   keep_empty = T) %>%
@@ -123,5 +123,3 @@ ner_brand_product <- function(ner_df, input_df, text_var) {
   return(result_df[, c("document", "replacement_text")])
 
 }
-
-
