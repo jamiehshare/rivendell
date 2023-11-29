@@ -1,6 +1,6 @@
 #' Mask named entities (brands or products) with a single term
 #'
-#' @param ner_df The dataframe that has been run through NER in huggingface
+#' @param ner_df The dataframe that has been output by the NER model in huggingface
 #' @param input_df The dataframe that contains the social post with a document id number
 #' @param text_var The column containing the text variable
 #'
@@ -64,7 +64,7 @@ ner_mask <- function(ner_df, input_df, text_var, mask_term = "mask") {
 
 #' Mask named entities (brands or products) with a seperate terms for ORG or MISC
 #'
-#' @param ner_df The dataframe that has been run through NER in huggingface
+#' @param ner_df The dataframe that has been output by the NER model in huggingface
 #' @param input_df The dataframe that contains the social post with a document id number
 #' @param text_var The column containing the text variable
 #'
