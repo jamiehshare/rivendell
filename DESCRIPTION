@@ -17,6 +17,8 @@ Imports:
     generics,
     ggplot2,
     janitor,
+    lubridate,
+    plotly,
     purrr,
     readr,
     rlang,

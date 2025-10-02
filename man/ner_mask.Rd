@@ -7,7 +7,7 @@
 ner_mask(ner_df, input_df, text_var, mask_term = "mask")
 }
 \arguments{
-\item{ner_df}{The dataframe that has been run through NER in huggingface}
+\item{ner_df}{The dataframe that has been output by the NER model in huggingface}
 
 \item{input_df}{The dataframe that contains the social post with a document id number}
 

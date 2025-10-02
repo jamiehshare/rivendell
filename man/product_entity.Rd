@@ -5,21 +5,15 @@
 \alias{product_entity}
 \title{Peaks and Pits products regex patterns}
 \format{
-\subsection{\code{product_entity}}{
-
-A data frame of different regex patterns for Peaks and Pits removal of products
-\describe
-...
-}
-}
+A data frame with product-related regex patterns.
 }
 \source{
-<
+Internal Peaks and Pits project data
 }
 \usage{
 product_entity
 }
 \description{
-Peaks and Pits products regex patterns
+A data frame of different regex patterns for Peaks and Pits removal of products.
 }
 \keyword{datasets}
