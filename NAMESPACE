@@ -2,6 +2,7 @@
 
 export(add_br)
 export(add_br_parallel)
+export(add_token_count)
 export(clean_hf_emotion)
 export(day_of_week)
 export(explore_LDAs_JH)
