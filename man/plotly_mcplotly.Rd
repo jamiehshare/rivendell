@@ -12,7 +12,9 @@ plotly_mcplotly(
   colour_col = NULL,
   single_colour = "purple",
   shape_col = NULL,
+  size_col = NULL,
   opacity = 1,
+  size_range = c(5, 30),
   size = 1
 )
 }
@@ -32,10 +34,11 @@ uses \code{single_colour} instead.}
 \item{single_colour}{Character. Colour to use when \code{colour_col} is NULL.
 Default is "purple".}
 
-\item{shape_col}{Character. Optional name of column to use for point shapes.
-Will be converted to factor. If NULL, all points are circles.}
+\item{shape_col}{Character. Optional name of column to use for point sizes.}
 
 \item{opacity}{Numeric. Point opacity between 0 and 1. Default is 1.}
+
+\item{size_range}{Numeric. Vector to represent the max and min scaling for size when mapped to column.}
 
 \item{size}{Numeric. Point size. Default is 1.}
 }

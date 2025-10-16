@@ -15,7 +15,9 @@
 #'   Default is "purple".
 #' @param shape_col Character. Optional name of column to use for point shapes.
 #'   Will be converted to factor. If NULL, all points are circles.
+#' @param shape_col Character. Optional name of column to use for point sizes.
 #' @param opacity Numeric. Point opacity between 0 and 1. Default is 1.
+#' @param size_range Numeric. Vector to represent the max and min scaling for size when mapped to column.
 #' @param size Numeric. Point size. Default is 1.
 #'
 #' @return A plotly object.
@@ -39,7 +41,9 @@
 plotly_mcplotly <- function(df, x_col = "V1", y_col = "V2", text_col = "umap_text",
                             colour_col = NULL, single_colour = "purple",
                             shape_col = NULL,
+                            size_col = NULL,
                             opacity = 1,
+                            size_range = c(5, 30),
                             size = 1) {
 
   # Check if colour column is continuous or categorical
@@ -56,6 +60,16 @@ plotly_mcplotly <- function(df, x_col = "V1", y_col = "V2", text_col = "umap_tex
     I(single_colour)
   }
 
+  # Determine size mapping
+  if (!is.null(size_col)) {
+    # Scale the size variable to the specified range
+    size_values <- df[[size_col]]
+    size_scaled <- scales::rescale(size_values, to = size_range)
+    marker_size <- size_scaled
+  } else {
+    marker_size <- size  # Use fixed size if no size_col specified
+  }
+
   # Create the base plot
   p <- df %>%
     plotly::plot_ly(
@@ -69,7 +83,7 @@ plotly_mcplotly <- function(df, x_col = "V1", y_col = "V2", text_col = "umap_tex
       colors = if (is_continuous) "viridis" else NULL,
       symbol = if (!is.null(shape_col)) ~factor(.data[[shape_col]]) else I("circle"),
       marker = list(
-        size = size,
+        size = marker_size,
         opacity = opacity,
         line = list(width = 2)
       )
