@@ -10,6 +10,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
+    cli,
     data.table,
     dplyr,
     furrr,
@@ -17,10 +18,12 @@ Imports:
     generics,
     ggplot2,
     janitor,
+    jsonlite,
     lubridate,
     plotly,
     purrr,
     readr,
+    rivendell,
     rlang,
     stats,
     stringr,
