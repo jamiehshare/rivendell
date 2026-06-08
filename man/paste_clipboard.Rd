@@ -4,7 +4,7 @@
 \alias{paste_clipboard}
 \title{paste_clipboard}
 \usage{
-paste_clipboard(header = F)
+paste_clipboard(header = FALSE)
 }
 \arguments{
 \item{header}{}
@@ -16,6 +16,6 @@ The data from the clipboard get's saved in the R
 paste_clipboard
 }
 \examples{
-df <- paste_clipboard(header = F)
+df <- paste_clipboard(header = FALSE)
 
 }

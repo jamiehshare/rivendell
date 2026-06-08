@@ -6,9 +6,9 @@
 #' @export
 #'
 #' @examples
-#' df <- paste_clipboard(header = F)
+#' df <- paste_clipboard(header = FALSE)
 #'
-paste_clipboard <- function(header = F) {
+paste_clipboard <- function(header = FALSE) {
   # Function code here
   utils::read.table(pipe("pbpaste"), header = header, comment.char = "")
 

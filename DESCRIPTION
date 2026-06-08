@@ -23,7 +23,6 @@ Imports:
     plotly,
     purrr,
     readr,
-    rivendell,
     rlang,
     stats,
     stringr,
