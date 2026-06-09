@@ -6,14 +6,16 @@
 #' @param base_family base font family
 #' @param base_line_size base size for line elements
 #' @param base_rect_size base size for rect elements
-#' @param ...
+#' @param ... Additional arguments passed to \code{ggplot2::theme_grey()}.
 #'
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' p1 <- ggplot(mtcars2) +
-#' geom_point(aes(x = wt, y = mpg, colour = gear)) +
-#' + theme_capture()
+#'   geom_point(aes(x = wt, y = mpg, colour = gear)) +
+#'   theme_capture()
+#' }
 #'
 theme_capture <- function(base_size = 11, base_family = "GT Walsheim Pro",
                           base_line_size = base_size / 22,

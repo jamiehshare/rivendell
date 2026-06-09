@@ -1,4 +1,4 @@
-#' Estimate Anthropic Haiku batch cost before sending
+#' Estimate API cost before sending
 #'
 #' Estimates the cost of classifying a data frame of texts through Anthropic's
 #' Messages or Batches API, calculated locally before any request is sent.
@@ -12,7 +12,8 @@
 #' into \code{system_prompt} or it will be counted twice. Output tokens cannot
 #' be known before sending, so \code{expected_output_tokens} is applied per row
 #' as an assumption (this is expected billed output, not \code{max_tokens}).
-#' Prices are Claude Haiku 4.5 rates and should be verified before use.
+#' Batch pricing is assumed to be 50\% of standard. Prices default to Claude
+#' Haiku 4.5 rates and should be verified before use.
 #'
 #' @param df Data frame containing the texts to be classified.
 #' @param message_col Character string. Name of the column in \code{df} holding
@@ -24,6 +25,12 @@
 #'   input once per row. If NULL, no schema is included. Default is NULL.
 #' @param expected_output_tokens Integer. Assumed billed output tokens per call,
 #'   not \code{max_tokens}. Default is 100.
+#' @param input_price_per_1m Numeric. Cost in USD per 1 million input tokens
+#'   for the standard tier. Batch is assumed to be 50\% of this. Default is
+#'   1.00 (Claude Haiku 4.5).
+#' @param output_price_per_1m Numeric. Cost in USD per 1 million output tokens
+#'   for the standard tier. Batch is assumed to be 50\% of this. Default is
+#'   5.00 (Claude Haiku 4.5).
 #' @param chars_per_token Numeric. Characters-per-token ratio for the
 #'   character-based estimate. Default is 4.
 #' @param words_per_token Numeric. Words-per-token ratio for the word-based
@@ -46,7 +53,7 @@
 #'   )
 #' )
 #'
-#' estimate_haiku_cost(
+#' estimate_endpointr_cost(
 #'   df = posts_df,
 #'   message_col = "clean_message",
 #'   system_prompt = prompt,
@@ -55,11 +62,13 @@
 #' )
 #' }
 #'
-estimate_haiku_cost <- function(df,
+estimate_endpointr_cost <- function(df,
                                 message_col,
                                 system_prompt,
                                 schema = NULL,
                                 expected_output_tokens = 100,
+                                input_price_per_1m = 1.00,
+                                output_price_per_1m = 5.00,
                                 chars_per_token = 4,
                                 words_per_token = 0.75) {
 
@@ -98,7 +107,6 @@ estimate_haiku_cost <- function(df,
   input_tok_word <- (fixed_words + post_words) / words_per_token
   output_tok     <- expected_output_tokens * n
 
-  # per-tier costing (Haiku 4.5: standard $1/$5, batch $0.50/$2.50 per 1M)
   price_it <- function(in_price, out_price, tier) {
     tibble::tibble(
       tier              = tier,
@@ -110,7 +118,7 @@ estimate_haiku_cost <- function(df,
   }
 
   dplyr::bind_rows(
-    price_it(1.00, 5.00, "Haiku 4.5 - standard"),
-    price_it(0.50, 2.50, "Haiku 4.5 - batch (50% off)")
+    price_it(input_price_per_1m,         output_price_per_1m,         "standard"),
+    price_it(input_price_per_1m * 0.5,   output_price_per_1m * 0.5,   "batch (50% off)")
   )
 }

@@ -34,7 +34,10 @@ uses \code{single_colour} instead.}
 \item{single_colour}{Character. Colour to use when \code{colour_col} is NULL.
 Default is "purple".}
 
-\item{shape_col}{Character. Optional name of column to use for point sizes.}
+\item{shape_col}{Character. Optional name of column to use for point shapes.
+Will be converted to factor. If NULL, all points are circles.}
+
+\item{size_col}{Character. Optional name of column to use for point sizes.}
 
 \item{opacity}{Numeric. Point opacity between 0 and 1. Default is 1.}
 

@@ -15,7 +15,7 @@
 #'   Default is "purple".
 #' @param shape_col Character. Optional name of column to use for point shapes.
 #'   Will be converted to factor. If NULL, all points are circles.
-#' @param shape_col Character. Optional name of column to use for point sizes.
+#' @param size_col Character. Optional name of column to use for point sizes.
 #' @param opacity Numeric. Point opacity between 0 and 1. Default is 1.
 #' @param size_range Numeric. Vector to represent the max and min scaling for size when mapped to column.
 #' @param size Numeric. Point size. Default is 1.

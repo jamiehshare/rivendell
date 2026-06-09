@@ -3,6 +3,7 @@
 #' @param ner_df The dataframe that has been output by the NER model in huggingface
 #' @param input_df The dataframe that contains the social post with a document id number
 #' @param text_var The column containing the text variable
+#' @param mask_term Character. The string to replace masked entities with. Default is "mask".
 #'
 #' @return A dataframe
 #' @export

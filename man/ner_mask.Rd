@@ -12,6 +12,8 @@ ner_mask(ner_df, input_df, text_var, mask_term = "mask")
 \item{input_df}{The dataframe that contains the social post with a document id number}
 
 \item{text_var}{The column containing the text variable}
+
+\item{mask_term}{Character. The string to replace masked entities with. Default is "mask".}
 }
 \value{
 A dataframe

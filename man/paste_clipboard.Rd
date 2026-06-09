@@ -7,7 +7,7 @@
 paste_clipboard(header = FALSE)
 }
 \arguments{
-\item{header}{}
+\item{header}{Logical. Whether the first row should be treated as column headers. Default is FALSE.}
 }
 \value{
 The data from the clipboard get's saved in the R
@@ -16,6 +16,8 @@ The data from the clipboard get's saved in the R
 paste_clipboard
 }
 \examples{
+\dontrun{
 df <- paste_clipboard(header = FALSE)
+}
 
 }

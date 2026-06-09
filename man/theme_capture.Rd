@@ -21,14 +21,16 @@ theme_capture(
 
 \item{base_rect_size}{base size for rect elements}
 
-\item{...}{}
+\item{...}{Additional arguments passed to \code{ggplot2::theme_grey()}.}
 }
 \description{
 A ggplot2 based theme for Capture graphics
 }
 \examples{
+\dontrun{
 p1 <- ggplot(mtcars2) +
-geom_point(aes(x = wt, y = mpg, colour = gear)) +
-+ theme_capture()
+  geom_point(aes(x = wt, y = mpg, colour = gear)) +
+  theme_capture()
+}
 
 }
