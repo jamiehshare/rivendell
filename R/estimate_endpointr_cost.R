@@ -112,8 +112,8 @@ estimate_endpointr_cost <- function(df,
       tier              = tier,
       prompt_tok_each   = round(prompt_chars / chars_per_token),
       schema_tok_each   = round(schema_chars / chars_per_token),
-      char_estimate_usd = round((input_tok_char * in_price + output_tok * out_price) / 1e6, 2),
-      word_estimate_usd = round((input_tok_word * in_price + output_tok * out_price) / 1e6, 2)
+      char_estimate_usd = (input_tok_char * in_price + output_tok * out_price) / 1e6,
+      word_estimate_usd = (input_tok_word * in_price + output_tok * out_price) / 1e6
     )
   }
 
